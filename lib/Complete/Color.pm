@@ -14,7 +14,7 @@ use Complete::Common qw(:all);
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
-                       complete_known_host
+                       complete_color_name
                );
 
 our %SPEC;
@@ -43,7 +43,7 @@ MARKDOWN
         schema => 'array',
     },
 };
-sub complete_en_color_name {
+sub complete_color_name {
     my %args = @_;
 
     my $lang = $args{lang};
