@@ -62,7 +62,9 @@ sub complete_color_name {
 
     require Complete::Util;
     no strict 'refs'; ## no critic: TestingAndDebugging::ProhibitNoStrict
-    Complete::Util::complete_hash_key(hash => ${"$mod\::NAMES_RGB_TABLE"}, word=>$args{word}, summaries_from_hash_values=>1);
+    my %summaries;
+    for (keys %{${"$mod\::NAMES_RGB_TABLE"}}) { $summaries{$_} = "code #".${"$mod\::NAMES_RGB_TABLE"}->{$_}.", ".${"$mod\::NAMES_SUMMARIES_TABLE"}->{$_} }
+    Complete::Util::complete_hash_key(hash => ${"$mod\::NAMES_RGB_TABLE"}, word=>$args{word}, summaries=>\%summaries);
 }
 
 $SPEC{'complete_color_rgb24_hexcode'} = {
